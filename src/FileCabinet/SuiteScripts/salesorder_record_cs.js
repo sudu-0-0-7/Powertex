@@ -12,13 +12,12 @@ define(['N/record'],
 
         }
 
-        function completeTransaction(curtRecId, invoiceSearchResultCount, itemFulfillmentsearchResultCount) {
+        function createTransactions(currentRecId, invoiceSearchResultCount, itemFulfillmentsearchResultCount) {
             try {
                 if (itemFulfillmentsearchResultCount == 0) {
-                    log.debug("inside second if", '');
                     var itemFulfillmentRecord = record.transform({
                         fromType: 'salesorder',
-                        fromId: curtRecId,
+                        fromId: currentRecId,
                         toType: 'itemfulfillment',
                         isDynamic: true
                     });
@@ -28,7 +27,7 @@ define(['N/record'],
                 if (invoiceSearchResultCount == 0) {
                     var invoiceRecord = record.transform({
                         fromType: 'salesorder',
-                        fromId: curtRecId,
+                        fromId: currentRecId,
                         toType: 'invoice',
                         isDynamic: true,
                     });
@@ -44,7 +43,7 @@ define(['N/record'],
 
         return {
             pageInit: pageInit,
-            completeTransaction: completeTransaction
+            createTransactions: createTransactions
         };
 
     });

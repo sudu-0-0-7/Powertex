@@ -10,14 +10,14 @@ define(['N/record', 'N/currentRecord', 'N/search'],
         const beforeLoad = (scriptContext) => {
             try {
                 if (scriptContext.type === 'view') {
-                    var curtRecId = scriptContext.newRecord.id
+                    var currentRecId = scriptContext.newRecord.id
                     var invoiceSearch = search.create({
                         type: "transaction",
                         filters:
                             [
                                 ["type", "anyof", "CustInvc"],
                                 "AND",
-                                ["createdfrom", "anyof", curtRecId],
+                                ["createdfrom", "anyof", currentRecId],
                                 "AND",
                                 ["mainline", "is", "T"]
                             ],
@@ -32,7 +32,7 @@ define(['N/record', 'N/currentRecord', 'N/search'],
                         type: "itemfulfillment",
                         filters:
                             [
-                                ["createdfrom", "anyof", curtRecId],
+                                ["createdfrom", "anyof", currentRecId],
                                 "AND",
                                 ["mainline", "is", "T"],
                                 "AND",
@@ -48,8 +48,8 @@ define(['N/record', 'N/currentRecord', 'N/search'],
                     if (invoiceSearchResultCount == 0 && itemFulfillmentsearchResultCount == 0 || invoiceSearchResultCount >= 1 && itemFulfillmentsearchResultCount == 0 || invoiceSearchResultCount == 0 && itemFulfillmentsearchResultCount >= 1) {
                         scriptContext.form.addButton({
                             id: 'custpage_wipfli_button',
-                            label: 'Create transaction',
-                            functionName: 'completeTransaction(' + curtRecId + ',' + invoiceSearchResultCount + ',' + itemFulfillmentsearchResultCount + ')'
+                            label: 'Create transactions',
+                            functionName: 'createTransactions(' + currentRecId + ',' + invoiceSearchResultCount + ',' + itemFulfillmentsearchResultCount + ')'
                         });
                         scriptContext.form.clientScriptModulePath = './salesorder_record_cs.js';
                     }
