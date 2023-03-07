@@ -15,7 +15,7 @@ define(['N/currentRecord', 'N/record', 'N/search'],
 
     }
 
-    function deletetransaction(salesOrderId) {
+    function deleteTransactions(salesOrderId) {
       try{
 
       var itemfulfillmentSearch = search.create({
@@ -33,7 +33,7 @@ define(['N/currentRecord', 'N/record', 'N/search'],
             search.createColumn({ name: "internalid", label: "Internal ID" })
           ]
       });
-      var itemFulfillments = itemfulfillmentSearch.run().getRange(0, 10);
+      var itemFulfillments = itemfulfillmentSearch.run().getRange(0, 100);
 
       if (itemFulfillments.length > 0) {
         for (var i = 0; i < itemFulfillments.length; i++) {
@@ -60,7 +60,7 @@ define(['N/currentRecord', 'N/record', 'N/search'],
             search.createColumn({ name: "internalid", label: "Internal ID" })
           ]
       });
-      var invoices = invoiceSearch.run().getRange(0, 10);
+      var invoices = invoiceSearch.run().getRange(0, 100);
 
       if (invoices.length > 0) {
         for (var j = 0; j < invoices.length; j++) {
@@ -71,6 +71,7 @@ define(['N/currentRecord', 'N/record', 'N/search'],
           });
         }
       }
+
       window.location.reload();
     }
     catch(e){
@@ -87,7 +88,7 @@ define(['N/currentRecord', 'N/record', 'N/search'],
 
     return {
       pageInit: pageInit,
-      deletetransaction: deletetransaction
+      deleteTransactions: deleteTransactions
 
     };
 

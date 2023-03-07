@@ -39,7 +39,7 @@ define(['N/record', 'N/search'],
                search.createColumn({name: "internalid", label: "Internal ID"})
             ]
          });
-         var itemFulfillments = itemfulfillmentSearch.run().getRange(0, 10);
+         var itemFulfillments = itemfulfillmentSearch.run().getRange(0, 100);
 
 
          var invoiceSearch = search.create({
@@ -57,14 +57,14 @@ define(['N/record', 'N/search'],
                search.createColumn({name: "internalid", label: "Internal ID"})
             ]
          });
-         var invoices = invoiceSearch.run().getRange(0, 10);
+         var invoices = invoiceSearch.run().getRange(0, 100);
 
          
          if (itemFulfillments.length > 0 || invoices.length > 0) {
              scriptContext.form.addButton({
                id: "custpage_undo_button",
                label: "Undo",
-               functionName: 'deletetransaction(' + salesOrderId + ')',
+               functionName: 'deleteTransactions(' + salesOrderId + ')',
              });
              scriptContext.form.clientScriptModulePath = "./undo_transaction_cs.js";
          }
