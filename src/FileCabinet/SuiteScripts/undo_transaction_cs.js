@@ -71,6 +71,7 @@ define(['N/currentRecord', 'N/record', 'N/search'],
           });
         }
       }
+      window.location.reload();
     }
     catch(e){
       log.error({
