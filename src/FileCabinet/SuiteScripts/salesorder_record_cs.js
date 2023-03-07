@@ -34,6 +34,7 @@ define(['N/record'],
                     });
                     invoiceRecord.save();
                 }
+                window.location.reload();
             }
             catch (e) {
                 log.error("error in beforeload", e.message);

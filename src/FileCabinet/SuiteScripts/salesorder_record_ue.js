@@ -54,6 +54,7 @@ define(['N/record', 'N/currentRecord', 'N/search'],
                         scriptContext.form.clientScriptModulePath = './salesorder_record_cs.js';
                     }
                 }
+                
             }
             catch (e) {
                 log.error("error in beforeload", e.message);
